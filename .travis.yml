@@ -1,0 +1,44 @@
+# .tarvis.yml
+language: node_js # 指定语言环境
+node_js:
+  - "10" # 指定 NodeJS 版本
+dist: trusty # 指定系统版本。trusty 是指 Ubuntu 14.04 发行版的名称
+sudo: required # 是否需要 sudo 权限
+
+branches: # 指定要构建的分支
+  only: # only 表示只构建以下分支
+  - writing 
+
+install: # 在安装项目环境阶段需要运行的命令，一条一行，类似的还有 before_install
+  - source travis_env_init.sh # 执行指定的 shell 脚本来做初始化
+
+script: # 在构建阶段需要运行的命令，一条一行，类似的还有 before_script、after_script
+  - hexo clean 
+  - hexo generate # Hexo 常规命令，执行清理和生成
+  - gulp
+
+after_script:
+  - git clone https://${GH_REF} .deploy_git  # GH_REF是最下面配置的仓库地址
+  - cd .deploy_git
+  - git checkout master
+  - cd ../
+  - mv .deploy_git/.git/ ./public/   # 这一步之前的操作是为了保留master分支的提交记录，不然每次git init的话只有1条commit
+  - cd ./public
+  - git config user.name "QuincySx"  #修改name
+  - git config user.email "772804430@qq.com"  #修改email
+  - touch CNAME
+  - echo "wiki.smallraw.com">>CNAME
+  - git add .
+  - git commit -m "Travis CI Auto Builder at `date +"%Y-%m-%d %H:%M"`"  # 提交记录包含时间 跟上面更改时区配合
+  - git push --force --quiet "https://${GIT_REPO_TOKEN}@${GH_REF}" master:master  #Travis_Token是在Travis中配置环境变量的名称
+
+after_success: # 在构建成功后要运行的命令，构建失败不会执行，其他同上
+  - hexo deploy > /dev/null # 通过 hexo 的 deploy 命令部署博客
+
+notifications: # 设置通知项
+  email: true
+
+env:
+ global:
+   - GH_REF: github.com/QuincySx/QuincySx.github.io.git
+
