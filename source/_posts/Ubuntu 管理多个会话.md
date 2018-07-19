@@ -16,4 +16,14 @@ screen -S name
 
 #恢复会话
 screen -r name 
+
+#查看会话列表
+screen --list
+screen -ls
+
+#detach 某个 session
+screen -d 会话名称
+
+#kill 某个 session
+screen -S 会话名称 -X quit
 ```
