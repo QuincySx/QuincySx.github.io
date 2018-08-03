@@ -26,3 +26,7 @@ tags:
   //拿出暂存文件
   git stash pop
 ```
+
+
+![Git 速查表](http://image.smallraw.com/Git速查表.png)
+
