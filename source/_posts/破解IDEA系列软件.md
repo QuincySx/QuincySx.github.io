@@ -12,8 +12,16 @@ tags:
 
 2. 进入 IDEA 的安装目录 bin 目录下，找到 idea.exe.vmoptions 和 idea64.exe.vmoptions 两个文件
 
-3. 并分别编辑，在各自文件最后一行加上：``` -javaagent:D:\xx\JetbrainsCrack-2.8-release-enc.jar ```
+3. 并分别编辑，在各自文件最后一行加上：``` -javaagent:D:\xx\JetbrainsCrack-3.1-release-enc.jar ```
 
 4. 打开 IDEA 注册，选择 Activation code，随便输入一个注册码
 
-[相关引用](https://plus.google.com/+Rover12421)
+#### 升级 Log
+
+升级到 3.1 兼容 idea 2.4
+
+#### 相关引用
+
+[Google+](https://plus.google.com/+Rover12421)
+
+[官方网站](https://rover12421.com/)
