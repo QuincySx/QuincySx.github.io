@@ -16,4 +16,4 @@ tags:
 
 4. 打开 IDEA 注册，选择 Activation code，随便输入一个注册码
 
-![相关引用](https://plus.google.com/+Rover12421)
+[相关引用](https://plus.google.com/+Rover12421)
