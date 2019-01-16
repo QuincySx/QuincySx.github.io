@@ -12,13 +12,13 @@ tags:
 
 2. 进入 IDEA 的安装目录 bin 目录下，找到 idea.exe.vmoptions 和 idea64.exe.vmoptions 两个文件
 
-3. 并分别编辑，在各自文件最后一行加上：``` -javaagent:D:\xx\JetbrainsCrack-3.1-release-enc.jar ```
+3. 并分别编辑，在各自文件最后一行加上：``` -javaagent:D:\xx\JetbrainsCrack-4.2-release-enc.jar ```
 
 4. 打开 IDEA 注册，选择 Activation code，随便输入一个注册码
 
 #### 升级 Log
 
-升级到 3.1 兼容 idea 2.4
+升级到 4.2 兼容 idea 3.2
 
 #### 相关引用
 
