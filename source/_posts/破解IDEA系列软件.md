@@ -25,3 +25,5 @@ tags:
 [Google+](https://plus.google.com/+Rover12421)
 
 [官方网站](https://rover12421.com/)
+
+[Telegram](http://t.me/sniarbtejchannel)
