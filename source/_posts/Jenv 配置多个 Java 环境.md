@@ -18,6 +18,9 @@ eval "$(jenv init -)"
 // 显示全部版本
 jenv versions
 
+// 添加新版本
+jenv add /Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/
+
 // 删除版本
 jenv remove 1.6
 
