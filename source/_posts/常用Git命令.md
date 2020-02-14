@@ -25,6 +25,15 @@ tags:
   
   //拿出暂存文件
   git stash pop
+  
+  //提交代码
+  //远端没有 local_branch
+  git push origin local_branch:remote_branch
+  //本地有 remote_branch
+  git push -u origin/remote_branch
+  
+  //拉取代码
+  git pull origin local_branch:remote_branch
 ```
 
 
