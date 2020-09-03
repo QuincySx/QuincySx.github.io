@@ -26,6 +26,9 @@ tags:
   //拿出暂存文件
   git stash pop
   
+  //合并单次提交
+  git cherry-pick 62ecb3
+  
   //提交代码
   //远端没有 local_branch
   git push origin local_branch:remote_branch
