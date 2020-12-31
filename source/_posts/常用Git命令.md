@@ -52,6 +52,23 @@ tags:
   git commit --amend
 ```
 
+## rebase -i 高级用法
+```
+对于已经存在但还没有推送到远程的提交记录，我们可以使用 rebase -i 去编辑他们。假设我们想修改最近三次提交，可以输入 gri head~3，它是完整写法是：
+
+git rebase -i head~3
+这个命令会展示出最近的三次提交，最老的提交在最上面，最新的提交在最下面，这是因为 git 会按照从旧到新的顺序编辑这些提交。展示的格式如下：
+
+pick commit_id commit_message
+我们可以随意调整这三行的顺序，相当于改变提交的顺序。如果把单词 pick 改成 reword 或 r，就可以修改提交记录。
+
+git 还支持以下关键字：
+
+edit 或 e：编辑此次提交
+drop 或 d：删除此次提交
+fix 或 f：将此次提交与上次提交合并
+```
+
 
 ![Git 速查表](http://image.smallraw.com/Git速查表.png)
 
