@@ -23,4 +23,11 @@ brew cleanup //清理旧版本软件
 brew cleanup #name //清理指定软件的旧版本
 
 brew cleanup -n //查看可清理的软件
+
+
+// 卸载依赖的库
+brew tap beeftornado/rmtree
+
+brew rmtree git // 卸载依赖
 ```
+
