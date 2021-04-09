@@ -38,4 +38,7 @@ jenv shell 1.8.0.25
 
 // 显示路径
 jenv which java
+
+// 设置 JAVA_HOME，运行后需要重启
+jenv enable-plugin export
 ```
