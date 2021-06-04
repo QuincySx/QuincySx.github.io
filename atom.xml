@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>QuincySx&#39;s Wiki</title>
+  
+  <subtitle>知识不能碎片化，要结构化</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://wiki.smallraw.com/"/>
+  <updated>2021-06-04T03:50:50.583Z</updated>
+  <id>http://wiki.smallraw.com/</id>
+  
+  <author>
+    <name>QuincySx</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android Studio Debug 之 运行期代码植入</title>
+    <link href="http://wiki.smallraw.com/wiki/AndroidStudioDebug1/"/>
+    <id>http://wiki.smallraw.com/wiki/AndroidStudioDebug1/</id>
+    <published>2020-07-23T16:00:00.000Z</published>
+    <updated>2021-06-04T03:50:50.583Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="https://raw.githubusercontent.com/QuincySx/QuincySx.github.io/writing/raw/CustomGoodsRenderers.gif" alt="图片"></p><p>填入以下代码可以查看各种类的数据<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (((Object) <span class="keyword">this</span>) <span class="keyword">instanceof</span> String</span><br><span class="line">        || ((Object) <span class="keyword">this</span>) <span class="keyword">instanceof</span> Number</span><br><span class="line">        || ((Object) <span class="keyword">this</span>) <span class="keyword">instanceof</span> Class) &#123;</span><br><span class="line">    <span class="keyword">return</span> ((Object) <span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">StringBuilder sb = <span class="keyword">new</span> StringBuilder(<span class="string">"&#123;"</span>);</span><br><span class="line">Class&lt;?&gt; cls = ((Object) <span class="keyword">this</span>).getClass();</span><br><span class="line">java.lang.reflect.Field[] fields = cls.getDeclaredFields();</span><br><span class="line"><span class="keyword">if</span> (fields != <span class="keyword">null</span>) &#123;</span><br><span class="line">    <span class="keyword">int</span> size = fields.length;</span><br><span class="line">    <span class="keyword">for</span> (java.lang.reflect.Field field : fields) &#123;</span><br><span class="line">        field.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">        Object value = field.get((Object) <span class="keyword">this</span>);</span><br><span class="line">        sb.append(field.getName())</span><br><span class="line">                .append(<span class="string">"="</span>)</span><br><span class="line">                .append(String.valueOf(value));</span><br><span class="line">        <span class="keyword">if</span> (--size &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            sb.append(<span class="string">", "</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> sb.append(<span class="string">"&#125;"</span>).toString();</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/QuincySx/QuincySx.github.io/writing/raw/CustomGoodsRenderers.gif&quot; alt=&quot;图片&quot;&gt;&lt;/p&gt;
+&lt;p&gt;填入以下代码可以查看
+      
+    
+    </summary>
+    
+      <category term="Android" scheme="http://wiki.smallraw.com/categories/Android/"/>
+    
+    
+      <category term="Android Studio" scheme="http://wiki.smallraw.com/tags/Android-Studio/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>常用 Git 命令</title>
+    <link href="http://wiki.smallraw.com/wiki/%E5%B8%B8%E7%94%A8Git%E5%91%BD%E4%BB%A4/"/>
+    <id>http://wiki.smallraw.com/wiki/常用Git命令/</id>
+    <published>2020-06-13T05:47:40.000Z</published>
+    <updated>2021-06-04T03:50:50.583Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">//添加远程仓库</span><br><span class="line">git remote add origin git@github.com:xx.git</span><br><span class="line">//同步远程仓库内容</span><br><span class="line">git remote update</span><br><span class="line"></span><br><span class="line">// 删除远端分支</span><br><span class="line">git push origin --delete &lt;branchName&gt;</span><br><span class="line"></span><br><span class="line">// 添加 Tag</span><br><span class="line">git tag v1.0</span><br><span class="line"></span><br><span class="line">// 删除远端 Tag</span><br><span class="line">git push origin --delete tag &lt;tagname&gt;</span><br><span class="line"></span><br><span class="line">// 暂存文件</span><br><span class="line">git stash</span><br><span class="line"></span><br><span class="line">// 拿出暂存文件</span><br><span class="line">git stash pop</span><br><span class="line"></span><br><span class="line">// 合并单次提交</span><br><span class="line">git cherry-pick 62ecb3</span><br><span class="line"></span><br><span class="line">// 提交代码</span><br><span class="line">// 远端没有 local_branch</span><br><span class="line">git push origin local_branch:remote_branch</span><br><span class="line">//本地有 remote_branch,远端也会相应的创建 remote_branch 分支</span><br><span class="line">git push -u origin/remote_branch</span><br><span class="line"></span><br><span class="line">// 拉取代码</span><br><span class="line">git pull origin local_branch:remote_branch</span><br><span class="line"></span><br><span class="line">// 删除本地有远端没有的分支</span><br><span class="line">git fetch -p</span><br><span class="line"></span><br><span class="line">// 查看文件 log</span><br><span class="line">git log &lt;fileName&gt;</span><br><span class="line">// 恢复一个文件到历史状态</span><br><span class="line">git reset &lt;commit-id&gt; &lt;fileName&gt;</span><br><span class="line"></span><br><span class="line">// 重新编辑当前提交</span><br><span class="line">git commit --amend</span><br></pre></td></tr></table></figure><h2 id="rebase-i-高级用法"><a href="#rebase-i-高级用法" class="headerlink" title="rebase -i 高级用法"></a>rebase -i 高级用法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">对于已经存在但还没有推送到远程的提交记录，我们可以使用 rebase -i 去编辑他们。假设我们想修改最近三次提交，可以输入 gri head~3，它是完整写法是：</span><br><span class="line"></span><br><span class="line">git rebase -i head~3</span><br><span class="line">这个命令会展示出最近的三次提交，最老的提交在最上面，最新的提交在最下面，这是因为 git 会按照从旧到新的顺序编辑这些提交。展示的格式如下：</span><br><span class="line"></span><br><span class="line">pick commit_id commit_message</span><br><span class="line">我们可以随意调整这三行的顺序，相当于改变提交的顺序。如果把单词 pick 改成 reword 或 r，就可以修改提交记录。</span><br><span class="line"></span><br><span class="line">git 还支持以下关键字：</span><br><span class="line"></span><br><span class="line">edit 或 e：编辑此次提交</span><br><span class="line">drop 或 d：删除此次提交</span><br><span class="line">fix 或 f：将此次提交与上次提交合并</span><br></pre></td></tr></table></figure><p><img src="http://image.smallraw.com/Git速查表.png" alt="Git 速查表"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
+      
+    
+    </summary>
+    
+      <category term="Git" scheme="http://wiki.smallraw.com/categories/Git/"/>
+    
+    
+      <category term="Git" scheme="http://wiki.smallraw.com/tags/Git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Jenv 配置多个 Java 环境</title>
+    <link href="http://wiki.smallraw.com/wiki/Jenv%20%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AA%20Java%20%E7%8E%AF%E5%A2%83/"/>
+    <id>http://wiki.smallraw.com/wiki/Jenv 配置多个 Java 环境/</id>
+    <published>2019-04-11T16:00:00.000Z</published>
+    <updated>2021-06-04T03:50:50.583Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">// 安装</span><br><span class="line">brew install jenv</span><br><span class="line"></span><br><span class="line">// 配置文件配置</span><br><span class="line">export PATH=$HOME/.jenv/bin:$PATH</span><br><span class="line">eval "$(jenv init -)"</span><br><span class="line"></span><br><span class="line">// 显示全部版本</span><br><span class="line">jenv versions</span><br><span class="line"></span><br><span class="line">// 添加新版本</span><br><span class="line">jenv add /Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/</span><br><span class="line"></span><br><span class="line">// 删除版本</span><br><span class="line">jenv remove 1.6</span><br><span class="line"></span><br><span class="line">// 显示当前版本</span><br><span class="line">jenv version</span><br><span class="line"></span><br><span class="line">// 设置本地应用</span><br><span class="line">jenv local 1.8.0.25</span><br><span class="line"></span><br><span class="line">// 设置全局应用</span><br><span class="line">jenv global 1.8.0.25</span><br><span class="line"></span><br><span class="line">// 设置终端应用</span><br><span class="line">jenv shell 1.8.0.25</span><br><span class="line"></span><br><span class="line">// 显示路径</span><br><span class="line">jenv which java</span><br><span class="line"></span><br><span class="line">// 设置 JAVA_HOME 运行后，不再需要单独设置 JAVA_HOME</span><br><span class="line">jenv enable-plugin export</span><br><span class="line">// 重启终端或执行如下命令生效</span><br><span class="line">exec $SHELL -l</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
+      
+    
+    </summary>
+    
+      <category term="Ubuntu" scheme="http://wiki.smallraw.com/categories/Ubuntu/"/>
+    
+    
+      <category term="Jenv 配置" scheme="http://wiki.smallraw.com/tags/Jenv-%E9%85%8D%E7%BD%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>国产手机调试问题</title>
+    <link href="http://wiki.smallraw.com/wiki/%E5%9B%BD%E4%BA%A7%E6%89%8B%E6%9C%BA%E8%B0%83%E8%AF%95%E9%97%AE%E9%A2%98/"/>
+    <id>http://wiki.smallraw.com/wiki/国产手机调试问题/</id>
+    <published>2018-11-11T16:00:00.000Z</published>
+    <updated>2021-06-04T03:50:50.583Z</updated>
+    
+    <content type="html"><![CDATA[<p>OPPO VIVO 等手机调试 APK 无法安装，小米不关闭 MIUI 优化闪退等问题：</p><ol><li><p>关闭 instant run</p></li><li><p>gradle.properties 中天机 android.injected.testOnly = false</p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;OPPO VIVO 等手机调试 APK 无法安装，小米不关闭 MIUI 优化闪退等问题：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;关闭 instant run&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;gradle.properties 中天机 android.injected.testO
+      
+    
+    </summary>
+    
+      <category term="Android" scheme="http://wiki.smallraw.com/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://wiki.smallraw.com/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Homebrew 日常更新与维护</title>
+    <link href="http://wiki.smallraw.com/wiki/Homebrew%20%E6%97%A5%E5%B8%B8%E6%9B%B4%E6%96%B0%E4%B8%8E%E7%BB%B4%E6%8A%A4/"/>
+    <id>http://wiki.smallraw.com/wiki/Homebrew 日常更新与维护/</id>
+    <published>2018-10-11T16:00:00.000Z</published>
+    <updated>2021-06-04T03:50:50.583Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">brew update //更新 Homebrew</span><br><span class="line"></span><br><span class="line">brew install #name //安装软件</span><br><span class="line"></span><br><span class="line">brew outdated //查看那些软件可更新</span><br><span class="line"></span><br><span class="line">brew upgrade //更新所有软件</span><br><span class="line"></span><br><span class="line">brew upgrade #name //更新指定软件</span><br><span class="line"></span><br><span class="line">brew cleanup //清理旧版本软件</span><br><span class="line"></span><br><span class="line">brew cleanup #name //清理指定软件的旧版本</span><br><span class="line"></span><br><span class="line">brew cleanup -n //查看可清理的软件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 卸载依赖的库</span><br><span class="line">brew tap beeftornado/rmtree</span><br><span class="line"></span><br><span class="line">brew rmtree git // 卸载依赖</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
+      
+    
+    </summary>
+    
+      <category term="Homebrew" scheme="http://wiki.smallraw.com/categories/Homebrew/"/>
+    
+    
+      <category term="Homebrew" scheme="http://wiki.smallraw.com/tags/Homebrew/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu 管理多个会话</title>
+    <link href="http://wiki.smallraw.com/wiki/Ubuntu%20%E7%AE%A1%E7%90%86%E5%A4%9A%E4%B8%AA%E4%BC%9A%E8%AF%9D/"/>
+    <id>http://wiki.smallraw.com/wiki/Ubuntu 管理多个会话/</id>
+    <published>2018-07-11T16:00:00.000Z</published>
+    <updated>2021-06-04T03:50:50.583Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#创建新的会话</span><br><span class="line">screen -S name </span><br><span class="line"></span><br><span class="line">#保存会话</span><br><span class="line">按ctrl+a后再按d </span><br><span class="line"></span><br><span class="line">#恢复会话</span><br><span class="line">screen -r name </span><br><span class="line"></span><br><span class="line">#查看会话列表</span><br><span class="line">screen --list</span><br><span class="line">screen -ls</span><br><span class="line"></span><br><span class="line">#detach 某个 session</span><br><span class="line">screen -d 会话名称</span><br><span class="line"></span><br><span class="line">#kill 某个 session</span><br><span class="line">screen -S 会话名称 -X quit</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
+      
+    
+    </summary>
+    
+      <category term="Ubuntu" scheme="http://wiki.smallraw.com/categories/Ubuntu/"/>
+    
+    
+      <category term="Screen" scheme="http://wiki.smallraw.com/tags/Screen/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>破解 Alfred3 软件</title>
+    <link href="http://wiki.smallraw.com/wiki/%E7%A0%B4%E8%A7%A3Alfred3%E8%BD%AF%E4%BB%B6/"/>
+    <id>http://wiki.smallraw.com/wiki/破解Alfred3软件/</id>
+    <published>2018-06-15T05:47:40.000Z</published>
+    <updated>2021-06-04T03:50:50.583Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://raw.githubusercontent.com/QuincySx/QuincySx.github.io/writing/raw/Alfred_Powerpack_3.6.903.dmg" rel="external nofollow noopener noreferrer" target="_blank">下载地址</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/QuincySx/QuincySx.github.io/writing/raw/Alfred_Powerpack_3.6.903.dmg&quot; rel=&quot;external nofollow n
+      
+    
+    </summary>
+    
+      <category term="Alfred3 软件破解" scheme="http://wiki.smallraw.com/categories/Alfred3-%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3/"/>
+    
+    
+      <category term="软件破解" scheme="http://wiki.smallraw.com/tags/%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>破解 IDEA 系列软件</title>
+    <link href="http://wiki.smallraw.com/wiki/%E7%A0%B4%E8%A7%A3IDEA%E7%B3%BB%E5%88%97%E8%BD%AF%E4%BB%B6/"/>
+    <id>http://wiki.smallraw.com/wiki/破解IDEA系列软件/</id>
+    <published>2018-06-13T05:47:40.000Z</published>
+    <updated>2021-06-04T03:50:50.583Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li>下载这个 Jar 包</li></ol><p><a href="https://raw.githubusercontent.com/QuincySx/QuincySx.github.io/writing/raw/JetbrainsCrack-3.1-release-enc.jar" rel="external nofollow noopener noreferrer" target="_blank">下载地址</a></p><ol start="2"><li><p>进入 IDEA 的安装目录 bin 目录下，找到 idea.exe.vmoptions 和 idea64.exe.vmoptions 两个文件</p></li><li><p>并分别编辑，在各自文件最后一行加上：<code>-javaagent:D:\xx\JetbrainsCrack-4.2-release-enc.jar</code></p></li><li><p>打开 IDEA 注册，选择 Activation code，随便输入一个注册码</p></li></ol><h4 id="升级-Log"><a href="#升级-Log" class="headerlink" title="升级 Log"></a>升级 Log</h4><p>升级到 4.2 兼容 idea 3.2</p><h4 id="相关引用"><a href="#相关引用" class="headerlink" title="相关引用"></a>相关引用</h4><p><a href="https://plus.google.com/+Rover12421" rel="external nofollow noopener noreferrer" target="_blank">Google+</a></p><p><a href="https://rover12421.com/" rel="external nofollow noopener noreferrer" target="_blank">官方网站</a></p><p><a href="http://t.me/sniarbtejchannel" rel="external nofollow noopener noreferrer" target="_blank">Telegram</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ol&gt;
+&lt;li&gt;下载这个 Jar 包&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/QuincySx/QuincySx.github.io/writing/raw/JetbrainsCrack-3.1-rele
+      
+    
+    </summary>
+    
+      <category term="IDEA 系列软件破解" scheme="http://wiki.smallraw.com/categories/IDEA-%E7%B3%BB%E5%88%97%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3/"/>
+    
+    
+      <category term="软件破解" scheme="http://wiki.smallraw.com/tags/%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android 多国语言简称对照表</title>
+    <link href="http://wiki.smallraw.com/wiki/Android_%E5%A4%9A%E5%9B%BD%E8%AF%AD%E8%A8%80%E7%AE%80%E7%A7%B0%E5%AF%B9%E7%85%A7%E8%A1%A8/"/>
+    <id>http://wiki.smallraw.com/wiki/Android_多国语言简称对照表/</id>
+    <published>2018-06-11T16:00:00.000Z</published>
+    <updated>2021-06-04T03:50:50.583Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://blog.csdn.net/kingda008/article/details/7878331" rel="external nofollow noopener noreferrer" target="_blank">https://blog.csdn.net/kingda008/article/details/7878331</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/kingda008/article/details/7878331&quot; rel=&quot;external nofollow noopener noreferrer&quot; target=&quot;_blank&quot;&gt;https://blo
+      
+    
+    </summary>
+    
+      <category term="Android" scheme="http://wiki.smallraw.com/categories/Android/"/>
+    
+    
+      <category term="Android 国际化" scheme="http://wiki.smallraw.com/tags/Android-%E5%9B%BD%E9%99%85%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>比特币公私钥地址的生成</title>
+    <link href="http://wiki.smallraw.com/wiki/%E6%AF%94%E7%89%B9%E5%B8%81%E5%85%AC%E7%A7%81%E9%92%A5%E5%9C%B0%E5%9D%80%E7%9A%84%E7%94%9F%E6%88%90/"/>
+    <id>http://wiki.smallraw.com/wiki/比特币公私钥地址的生成/</id>
+    <published>2018-06-11T16:00:00.000Z</published>
+    <updated>2021-06-04T03:50:50.583Z</updated>
+    
+    <content type="html"><![CDATA[<p>0xXX 数字在 Java 中表示 16 进制的数字</p><ol><li>Raw 私钥：随机生成一个 256 Bit 的数</li><li>Raw 公钥：将 Raw 私钥使用 SECP256K1 算出 X，Y的值，0x04 拼接上 X 轴的值在拼上 Y 轴的值为非压缩格式的公钥，算出 Y 轴奇、偶，如果奇数就是 0x03，偶数就是 0x02，然后拼接上 X 轴的值为压缩格式的公钥</li><li>地址：将 Raw 公钥使用 SHA256 计算然后再使用 RIPEMD160 计算，然后如果是主网环境前面拼接 0x00,测试网络环境前面拼接 0x6f，将此结果定义为 address，然后对 address 两次 SHA256 的结果取前四位，拼在 address 后面，就成了地址</li></ol><p>更详细的流程图 <a href="http://idgui.com/P/" rel="external nofollow noopener noreferrer" target="_blank">图形化私钥地址生成idgui.com</a></p><p>流程图<br><img src="http://image.smallraw.com/20180511152601606236130.png" alt="比特币公私钥地址生成.png"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;0xXX 数字在 Java 中表示 16 进制的数字&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Raw 私钥：随机生成一个 256 Bit 的数&lt;/li&gt;
+&lt;li&gt;Raw 公钥：将 Raw 私钥使用 SECP256K1 算出 X，Y的值，0x04 拼接上 X 轴的值在拼上 Y 轴的值为非压
+      
+    
+    </summary>
+    
+      <category term="区块链" scheme="http://wiki.smallraw.com/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="比特币" scheme="http://wiki.smallraw.com/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/%E6%AF%94%E7%89%B9%E5%B8%81/"/>
+    
+    
+      <category term="比特币" scheme="http://wiki.smallraw.com/tags/%E6%AF%94%E7%89%B9%E5%B8%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>比特币签名流程</title>
+    <link href="http://wiki.smallraw.com/wiki/%E6%AF%94%E7%89%B9%E5%B8%81%E7%AD%BE%E5%90%8D%E6%B5%81%E7%A8%8B/"/>
+    <id>http://wiki.smallraw.com/wiki/比特币签名流程/</id>
+    <published>2018-06-11T16:00:00.000Z</published>
+    <updated>2021-06-04T03:50:50.583Z</updated>
+    
+    <content type="html"><![CDATA[<p>还需要用到的辅助参数 Raw 私钥，Raw 公钥，地址</p><blockquote><p>以下两步操作需要找到对应语言的实现</p><ol><li>把一个 Tx 交易 Hash 值转成 Json 数组</li><li>把 Json 数组转成 Tx 交易 Hash 值<br>C++ 参考：<a href="https://github.com/bitcoin/bitcoin/blob/master/src/rpc/rawtransaction.cpp" rel="external nofollow noopener noreferrer" target="_blank">bitcoin/rawtransaction.cpp at master · bitcoin/bitcoin · GitHub</a></li></ol></blockquote><ol><li>拿到一个 Tx 交易</li><li><p>拆解交易 Json</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;txid&quot;: &quot;cca138efd14d7a1bfe40bdad3c8d5cb51aef715412c89f139922a3678d68e354&quot;,</span><br><span class="line">  &quot;hash&quot;: &quot;cca138efd14d7a1bfe40bdad3c8d5cb51aef715412c89f139922a3678d68e354&quot;,</span><br><span class="line">  &quot;version&quot;: 2,</span><br><span class="line">  &quot;size&quot;: 226,</span><br><span class="line">  &quot;vsize&quot;: 226,</span><br><span class="line">  &quot;locktime&quot;: 0,</span><br><span class="line">  &quot;vin&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;txid&quot;: &quot;58eb7b09020f7bf9e6037fbe91d72dab38dc19c6bf774a15d31ea0448b953321&quot;,</span><br><span class="line">      &quot;vout&quot;: 1,</span><br><span class="line">      &quot;scriptSig&quot;: &#123;</span><br><span class="line">        &quot;asm&quot;: &quot;&quot;,</span><br><span class="line">        &quot;hex&quot;: &quot;&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;sequence&quot;: 4294967295</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  &quot;vout&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;value&quot;: 0.01000000,</span><br><span class="line">      &quot;n&quot;: 0,</span><br><span class="line">      &quot;scriptPubKey&quot;: &#123;</span><br><span class="line">        &quot;asm&quot;: &quot;OP_DUP OP_HASH160 53b0535dc9927534be5db29947474e5bb3586619 OP_EQUALVERIFY OP_CHECKSIG&quot;,</span><br><span class="line">        &quot;hex&quot;: &quot;76a91453b0535dc9927534be5db29947474e5bb358661988ac&quot;,</span><br><span class="line">        &quot;reqSigs&quot;: 1,</span><br><span class="line">        &quot;type&quot;: &quot;pubkeyhash&quot;,</span><br><span class="line">        &quot;addresses&quot;: [</span><br><span class="line">          &quot;mo9TcJAwnQ1v7brym9D48wEH3cRJXNTgpz&quot;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, </span><br><span class="line">    &#123;</span><br><span class="line">      &quot;value&quot;: 0.08990000,</span><br><span class="line">      &quot;n&quot;: 1,</span><br><span class="line">      &quot;scriptPubKey&quot;: &#123;</span><br><span class="line">        &quot;asm&quot;: &quot;OP_DUP OP_HASH160 2e1e7684f795bab22b79a061845ea3a9932cbfa9 OP_EQUALVERIFY OP_CHECKSIG&quot;,</span><br><span class="line">        &quot;hex&quot;: &quot;76a9142e1e7684f795bab22b79a061845ea3a9932cbfa988ac&quot;,</span><br><span class="line">        &quot;reqSigs&quot;: 1,</span><br><span class="line">        &quot;type&quot;: &quot;pubkeyhash&quot;,</span><br><span class="line">        &quot;addresses&quot;: [</span><br><span class="line">          &quot;mjiosUvVDYzCpd1dnY2ZYDoSbganyg6YCR&quot;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>未签名的交易解析格式如上 vin 数组中 scriptSig 的两个参数为空</p></li><li>得到待签署的地址脚本 76a914 拼接 （地址 反 Base58Check 去掉第一位网络标识） 拼接 88ac</li><li>把 Tx 交易中的所有 vin 数组中的 scriptSig 清空,首先拿出第一个 vin 把待签的脚本放到 scriptSig 中（Java 实现中 scriptSig 并没有 asm,hex 这两个字段，我采取的整体替换），然后得到修改后的 Tx 交易的 hash 值，然后后面拼 1，然后进行两次 SHA256</li><li>然后使用 Raw 私钥通过 ECDSASigner 签名</li><li>签名后的值在后面在拼接 1</li><li>拼接后的签名 和 Raw 公钥 拼接新的 scriptSig 这就完成了一个 vin 的签名</li><li>重复 5-8 完成所有 vin 的签名（在重复签名时签过名的 vin 也要置空，这就要暂存其他 vin 的签名结果，等待所有 vin 签过名之后再逐一放置回去）</li><li>然后会变成如下，转成 Tx Hash 值 就完成了处理<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;txid&quot;: &quot;cca138efd14d7a1bfe40bdad3c8d5cb51aef715412c89f139922a3678d68e354&quot;,</span><br><span class="line">  &quot;hash&quot;: &quot;cca138efd14d7a1bfe40bdad3c8d5cb51aef715412c89f139922a3678d68e354&quot;,</span><br><span class="line">  &quot;version&quot;: 2,</span><br><span class="line">  &quot;size&quot;: 226,</span><br><span class="line">  &quot;vsize&quot;: 226,</span><br><span class="line">  &quot;locktime&quot;: 0,</span><br><span class="line">  &quot;vin&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;txid&quot;: &quot;58eb7b09020f7bf9e6037fbe91d72dab38dc19c6bf774a15d31ea0448b953321&quot;,</span><br><span class="line">      &quot;vout&quot;: 1,</span><br><span class="line">      &quot;scriptSig&quot;: &#123;</span><br><span class="line">        &quot;asm&quot;: &quot;3045022100ad909e04a649140ef3700999c94e5600f70b2402816b5cee36c21fffac078e7c0220276aeaebda9d649ab122e2a067d70113588865034fe38bc64a621f8b404d1913[ALL] 026eeb78f13772ebf0f07e1d4dbf45adcb563c7c118299a22b70fb1cf71e75406a&quot;,</span><br><span class="line">        &quot;hex&quot;: &quot;483045022100ad909e04a649140ef3700999c94e5600f70b2402816b5cee36c21fffac078e7c0220276aeaebda9d649ab122e2a067d70113588865034fe38bc64a621f8b404d19130121026eeb78f13772ebf0f07e1d4dbf45adcb563c7c118299a22b70fb1cf71e75406a&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;sequence&quot;: 4294967295</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  &quot;vout&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;value&quot;: 0.01000000,</span><br><span class="line">      &quot;n&quot;: 0,</span><br><span class="line">      &quot;scriptPubKey&quot;: &#123;</span><br><span class="line">        &quot;asm&quot;: &quot;OP_DUP OP_HASH160 53b0535dc9927534be5db29947474e5bb3586619 OP_EQUALVERIFY OP_CHECKSIG&quot;,</span><br><span class="line">        &quot;hex&quot;: &quot;76a91453b0535dc9927534be5db29947474e5bb358661988ac&quot;,</span><br><span class="line">        &quot;reqSigs&quot;: 1,</span><br><span class="line">        &quot;type&quot;: &quot;pubkeyhash&quot;,</span><br><span class="line">        &quot;addresses&quot;: [</span><br><span class="line">          &quot;mo9TcJAwnQ1v7brym9D48wEH3cRJXNTgpz&quot;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, </span><br><span class="line">    &#123;</span><br><span class="line">      &quot;value&quot;: 0.08990000,</span><br><span class="line">      &quot;n&quot;: 1,</span><br><span class="line">      &quot;scriptPubKey&quot;: &#123;</span><br><span class="line">        &quot;asm&quot;: &quot;OP_DUP OP_HASH160 2e1e7684f795bab22b79a061845ea3a9932cbfa9 OP_EQUALVERIFY OP_CHECKSIG&quot;,</span><br><span class="line">        &quot;hex&quot;: &quot;76a9142e1e7684f795bab22b79a061845ea3a9932cbfa988ac&quot;,</span><br><span class="line">        &quot;reqSigs&quot;: 1,</span><br><span class="line">        &quot;type&quot;: &quot;pubkeyhash&quot;,</span><br><span class="line">        &quot;addresses&quot;: [</span><br><span class="line">          &quot;mjiosUvVDYzCpd1dnY2ZYDoSbganyg6YCR&quot;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;还需要用到的辅助参数 Raw 私钥，Raw 公钥，地址&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;以下两步操作需要找到对应语言的实现&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;把一个 Tx 交易 Hash 值转成 Json 数组&lt;/li&gt;
+&lt;li&gt;把 Json 数组转成 Tx 交易 Hash
+      
+    
+    </summary>
+    
+      <category term="区块链" scheme="http://wiki.smallraw.com/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="比特币" scheme="http://wiki.smallraw.com/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/%E6%AF%94%E7%89%B9%E5%B8%81/"/>
+    
+    
+      <category term="比特币" scheme="http://wiki.smallraw.com/tags/%E6%AF%94%E7%89%B9%E5%B8%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mac 终端 Git 代理</title>
+    <link href="http://wiki.smallraw.com/wiki/Mac%20%E7%BB%88%E7%AB%AF%20Git%20%E4%BB%A3%E7%90%86/"/>
+    <id>http://wiki.smallraw.com/wiki/Mac 终端 Git 代理/</id>
+    <published>2018-06-11T16:00:00.000Z</published>
+    <updated>2021-06-04T03:50:50.583Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 设置代理配置</span><br><span class="line">git config --global http.proxy http://127.0.0.1:1080</span><br><span class="line">git config --global https.proxy https://127.0.0.1:1080</span><br><span class="line"></span><br><span class="line">git config --global http.proxy 'socks5://127.0.0.1:1080' </span><br><span class="line">git config --global https.proxy 'socks5://127.0.0.1:1080'</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 取消代理配置（如果酸酸乳关了，git 就会连接失败，用完记得关闭）</span><br><span class="line">git config --global --unset http.proxy</span><br><span class="line">git config --global --unset https.proxy</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
+      
+    
+    </summary>
+    
+      <category term="Git" scheme="http://wiki.smallraw.com/categories/Git/"/>
+    
+    
+      <category term="Git 代理" scheme="http://wiki.smallraw.com/tags/Git-%E4%BB%A3%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>以太坊公私钥地址生成流程</title>
+    <link href="http://wiki.smallraw.com/wiki/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E5%85%AC%E7%A7%81%E9%92%A5%E5%9C%B0%E5%9D%80%E7%94%9F%E6%88%90%E6%B5%81%E7%A8%8B/"/>
+    <id>http://wiki.smallraw.com/wiki/以太坊公私钥地址生成流程/</id>
+    <published>2018-06-11T16:00:00.000Z</published>
+    <updated>2021-06-04T03:50:50.583Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li>Raw 私钥：随机生成一个 256 Bit 的数</li><li>Raw 公钥：将 Raw 私钥使用 SECP256K1 算出 X，Y的值，0x04 拼接上 X 轴的值在拼上 Y 轴的值为公钥</li><li>地址：Raw 公钥通过 keccak256 算法然后取后 20 位然后前面拼上 0x 为地址</li></ol><p>流程<br><img src="http://image.smallraw.com/20180511152600717089356.png" alt="公私钥生成流程"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ol&gt;
+&lt;li&gt;Raw 私钥：随机生成一个 256 Bit 的数&lt;/li&gt;
+&lt;li&gt;Raw 公钥：将 Raw 私钥使用 SECP256K1 算出 X，Y的值，0x04 拼接上 X 轴的值在拼上 Y 轴的值为公钥&lt;/li&gt;
+&lt;li&gt;地址：Raw 公钥通过 keccak256 算法
+      
+    
+    </summary>
+    
+      <category term="区块链" scheme="http://wiki.smallraw.com/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="以太坊" scheme="http://wiki.smallraw.com/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/"/>
+    
+    
+      <category term="以太坊" scheme="http://wiki.smallraw.com/tags/%E4%BB%A5%E5%A4%AA%E5%9D%8A/"/>
+    
+  </entry>
+  
+</feed>
