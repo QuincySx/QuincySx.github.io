@@ -19,6 +19,9 @@ tags:
   // 添加 Tag
   git tag v1.0
   
+  // 推送本地 Tag 到远端
+  git push origin <tagname>
+  
   // 删除远端 Tag
   git push origin --delete tag <tagname>
   
