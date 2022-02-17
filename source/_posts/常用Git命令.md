@@ -50,6 +50,7 @@ tags:
   git log <fileName>
   // 恢复一个文件到历史状态
   git reset <commit-id> <fileName>
+  git checkout <commit-id> -- <fileName> <fileName>
   
   // 重新编辑当前提交
   git commit --amend
