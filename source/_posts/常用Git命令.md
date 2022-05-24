@@ -45,6 +45,8 @@ tags:
   
   // 删除本地有远端没有的分支
   git fetch -p
+  // 删除所有本地分支
+  git branch | grep -v "master" | xargs git branch -D
   
   // 查看文件 log
   git log <fileName>
