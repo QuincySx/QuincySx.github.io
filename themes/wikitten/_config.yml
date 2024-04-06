@@ -16,7 +16,7 @@ customize:
     profile:
         enabled: false # Whether to show profile bar
         avatar: # css/images/avatar.png
-        gravatar: QuincySx@sina.com # Gravatar email address, if you enable Gravatar, your avatar config will be overriden
+        gravatar: QuincySxs@pm.me # Gravatar email address, if you enable Gravatar, your avatar config will be overriden
         author: QuincySx
         author_title: Wiki
         location: Beijing, China
