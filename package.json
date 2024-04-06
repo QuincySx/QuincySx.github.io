@@ -8,6 +8,7 @@
   "scripts": {
     "clean": "npx hexo clean",
     "start": "npx hexo server",
+    "build": "npx hexo generate",
     "deploy": "npx hexo deploy"
   },
   "dependencies": {
