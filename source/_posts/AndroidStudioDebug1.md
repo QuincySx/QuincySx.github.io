@@ -7,7 +7,7 @@ tags:
 - Android Studio
 ---
 
-![图片](https://raw.githubusercontent.com/QuincySx/QuincySx.github.io/writing/raw/CustomGoodsRenderers.gif)
+![图片](https://raw.githubusercontent.com/QuincySx/QuincySx.github.io/master/raw/CustomGoodsRenderers.gif)
 
 
 填入以下代码可以查看各种类的数据
